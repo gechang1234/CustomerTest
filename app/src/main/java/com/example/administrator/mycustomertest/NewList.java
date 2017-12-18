@@ -1,7 +1,5 @@
 package com.example.administrator.mycustomertest;
 
-import android.support.annotation.NonNull;
-
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -22,27 +20,27 @@ class Node {
     }
 }
 
-// class ArrayListIterator implements Iterator{
-//        private int currentIndex=0;
-//       @Override
-//      public boolean hasNext() {
-//            if(currentIndex>=index){
+//class ArrayListIterator implements Iterator {
+//    private int currentIndex = 0;
 //
-//               return false;
-//           }
-//            else {
-//               return true;
-//            }
+//    @Override
+//    public boolean hasNext() {
+//        if (currentIndex >= index) {
+//
+//            return false;
+//        } else {
+//            return true;
 //        }
-//
-//        @Override
-//        public Object next() {
-//            Node temp = new Node(null, obj, node);
-//           Object object=objects[currentIndex];
-//            currentIndex++;
-//           return object;
-//      }
 //    }
+//
+//    @Override
+//    public Object next() {
+//        Node temp = new Node(null, obj, node);
+//        Object object = objects[currentIndex];
+//        currentIndex++;
+//        return object;
+//    }
+//}
 
 public class NewList implements List {
     private Node first;
@@ -79,16 +77,23 @@ public class NewList implements List {
         return flag;
     }
 
-    @NonNull
     @Override
     public Iterator iterator() {
         return null;
     }
 
-    @NonNull
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        int i = 0;
+        Object[] result = new Integer[size];
+        for (Node temp = first; temp != null; temp = temp.next) {
+            result[i++] = temp.obj;
+        }
+        for (Object object :
+                result) {
+            System.out.println(object);
+        }
+        return result;
     }
 
     @Override
@@ -127,13 +132,27 @@ public class NewList implements List {
     }
 
     @Override
-    public boolean addAll(@NonNull Collection c) {
-        return false;
+    public boolean addAll(Collection c) {
+        if (c.isEmpty()) {
+            return false;
+        }
+        Iterator<Collection> e = c.iterator();
+        while (e.hasNext()) {
+            add(e.next());
+        }
+        return true;
     }
 
     @Override
-    public boolean addAll(int index, @NonNull Collection c) {
-        return false;
+    public boolean addAll(int index, Collection c) {
+        if (c.isEmpty()) {
+            return false;
+        }
+        Iterator<Collection> e = c.iterator();
+        while (e.hasNext()) {
+            add(index, e.next());
+        }
+        return true;
     }
 
     @Override
@@ -297,9 +316,9 @@ public class NewList implements List {
     public void out() {
         int index = 0;
         for (Node temp = first; temp != null; ) {
+            System.out.println(temp.obj);
             temp = temp.next;
             index++;
-            System.out.println(temp.obj);
         }
     }
 
@@ -308,36 +327,78 @@ public class NewList implements List {
         return null;
     }
 
-    @NonNull
     @Override
     public ListIterator listIterator(int index) {
         return null;
     }
 
-    @NonNull
     @Override
     public List subList(int fromIndex, int toIndex) {
         return null;
     }
 
     @Override
-    public boolean retainAll(@NonNull Collection c) {
-        return false;
+    public boolean retainAll(Collection c) {
+        int index = 0;
+        Boolean flag = false;
+        for (Node temp = first; temp != null; ) {
+            if (!c.contains(temp.obj)) {
+                remove(index);
+                flag = true;
+            }
+            temp = temp.next;
+            index++;
+        }
+        return flag;
     }
 
     @Override
-    public boolean removeAll(@NonNull Collection c) {
-        return false;
+    public boolean removeAll(Collection c) {
+        int index = 0;
+        Boolean flag = false;
+        for (Node temp = first; temp != null; ) {
+            if (c.contains(temp.obj)) {
+                remove(index);
+                flag = true;
+            }
+            temp = temp.next;
+            index++;
+        }
+        return flag;
     }
 
     @Override
-    public boolean containsAll(@NonNull Collection c) {
-        return false;
+    public boolean containsAll(Collection c) {
+        if (c.isEmpty()) {
+
+        }
+        Iterator<Collection> e = c.iterator();
+        while (e.hasNext()) {
+            if (!contains(e.next())) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    @NonNull
     @Override
-    public Object[] toArray(@NonNull Object[] a) {
-        return new Object[0];
+    public Object[] toArray(Object[] a) {
+        if (a.length < size) {
+            a = (Object[]) java.lang.reflect.Array.newInstance(
+                    a.getClass().getComponentType(), size);
+        }
+        int i = 0;
+        Object[] result = a;
+        for (Node temp = first; temp != null; temp = temp.next) {
+            result[i++] = temp.obj;
+        }
+        if (a.length > size) {
+            a[size] = null;
+        }
+        for (Object object :
+                result) {
+            System.out.println(object);
+        }
+        return result;
     }
 }

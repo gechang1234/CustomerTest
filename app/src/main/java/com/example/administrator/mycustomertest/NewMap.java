@@ -1,7 +1,5 @@
 package com.example.administrator.mycustomertest;
 
-import android.support.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -61,7 +59,7 @@ public class NewMap<K, V> implements Map {
     }
 
     @Override
-    public void putAll(@NonNull Map m) {
+    public void putAll(Map m) {
 
     }
 
@@ -71,20 +69,16 @@ public class NewMap<K, V> implements Map {
         keys.clear();
     }
 
-    @NonNull
     @Override
     public Set keySet() {
         return null;
     }
 
-
-    @NonNull
     @Override
     public Collection values() {
         return null;
     }
 
-    @NonNull
     @Override
     public Set<Entry> entrySet() {
         return null;

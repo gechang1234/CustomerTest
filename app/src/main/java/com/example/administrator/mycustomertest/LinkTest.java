@@ -1,5 +1,7 @@
 package com.example.administrator.mycustomertest;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -18,10 +20,16 @@ public class LinkTest {
         linked.add(3, 5);
         linked.contains(4);
         linked.remove(1);
+//        linked.out();
+//        linked.clear();
+//        linked.toArray(new Integer[linked.size()]);
+        List<Integer> list = new ArrayList<>();
+        list.add(9);
+        list.add(9);
+        list.add(9);
+        linked.addAll(list);
         linked.out();
-        linked.clear();
-        linked.out();
-        System.out.println(linked.size());
+//        System.out.println(linked.size());
     }
 }
 
