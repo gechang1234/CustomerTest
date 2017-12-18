@@ -12,9 +12,16 @@ public class MapTest {
 
         NewMap<String, String> myMap = new NewMap<>();
         myMap.put("1", "one");
-        myMap.put("1", "two");
+        myMap.put("2", "two");
         myMap.put("3", "three");
-        System.out.println(myMap.get("1"));
+        NewMap<String, String> mymap2 = new NewMap<>();
+        mymap2.putAll(myMap);
+        mymap2.values();
+        mymap2.entrySet();
+        mymap2.keySet();
+        System.out.println(mymap2.get("1"));
+        System.out.println(mymap2.get("2"));
+        System.out.println(mymap2.get("3"));
     }
 
 }
